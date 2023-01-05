@@ -19,7 +19,7 @@ pipeline {
         stage('Git checkout') {
             steps {
                 echo 'Cloning the application code...'
-                git branch: 'main', url: 'https://github.com/cvamsikrishna11/devops-fully-automated.git'
+                git branch: 'main', url: 'https://github.com/kedwinn/CICD-development.git'
 
             }
         }
@@ -64,10 +64,10 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                         sh """
-                    mvn sonar:sonar \
-                    -Dsonar.projectKey=maven \
-                    -Dsonar.host.url=http://172.31.3.89:9000 \
-                    -Dsonar.login=$SONAR_TOKEN
+                   mvn sonar:sonar \
+  -Dsonar.projectKey=app-cicd-pipeline \
+  -Dsonar.host.url=http://18.134.131.34:9000 \
+  -Dsonar.login=273712f6560314e9d0f3c128302690f5cf2dbe95
                     """
                     }
                 }
@@ -135,7 +135,7 @@ pipeline {
     post {
         always {
             echo 'I will always say Hello again!'
-            slackSend channel: '#team-devops', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+            slackSend channel: '#tomcat-javaapp', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
 }
