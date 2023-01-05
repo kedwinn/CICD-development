@@ -1,7 +1,7 @@
 package com.example;
 
 /**
- * This is a class.
+ * This is a class that generates greetings.
  */
 public class Greeter {
 
@@ -9,14 +9,15 @@ public class Greeter {
    * This is a constructor.
    */
   public Greeter() {
-
+    // Do nothing because of X and Y
   }
 
- /**
-   * This is a method.
+  /**
+   * Generates a greeting for the given person.
+   * @param someone the person to greet
+   * @return the greeting
    */
-  public final String greet(final String someone) {
-  
-    return String.format("Hello Avinash, %s!", someone);
+  public String generateGreetingFor(String someone) {
+    return String.format("Hello Kenne EDWIN, %s!", someone);
   }
 }
